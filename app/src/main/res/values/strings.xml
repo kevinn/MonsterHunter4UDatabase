@@ -28,6 +28,11 @@
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
 
+    <!-- CONFIRM EXIT -->
+    <string name="confirm_exit">CONFIRM EXIT</string>
+    <string name="exit">EXIT</string>
+    <string name="cancel_exit">CANCEL</string>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="logo_description">Logo</string>
@@ -42,6 +47,7 @@
         <item>"Decorations,icons_items/Jewel-White.png"</item>
         <item>"Skills,icons_items/Monster-Jewel-White.png"</item>
         <item>"Wishlists,icons_items/Mantle-White.png"</item>
+        <item>"Wyporium Trade,icons_items/Carapace-White.png"</item>
     </string-array>
 
     <string name="option_list">List</string>
@@ -69,7 +75,12 @@
     <string name="weapons">Weapons</string>
     <string name="arena_quests">Arena Quests</string>
     <string name="wishlist">Wishlists</string>
+    <string name="wyporiumtrade">Wyporium Trade</string>
     <string name="icon_name">MH4U DB</string>
+
+    <string name="dialog_armor_filter_title">Filter</string>
+    <string name="armor_filter_label_rank">Rank</string>
+    <string name="armor_filter_label_slots">Slots</string>
 
     <!--
     Unicode Black Circle \u25CF
@@ -94,4 +105,41 @@
     <string name="armor_set_builder_waist">Waist</string>
     <string name="armor_set_builder_legs">Legs</string>
     <string name="placeholder_unknown">Unknown</string>
+
+    <string name="image_location_fire">icons_monster_info/Fire.png</string>
+    <string name="image_location_water">icons_monster_info/Water.png</string>
+    <string name="image_location_thunder">icons_monster_info/Thunder.png</string>
+    <string name="image_location_ice">icons_monster_info/Ice.png</string>
+    <string name="image_location_dragon">icons_monster_info/Dragon.png</string>
+    <string name="image_location_poison">icons_monster_info/Poison.png</string>
+    <string name="image_location_paralysis">icons_monster_info/Paralysis.png</string>
+    <string name="image_location_sleep">icons_monster_info/Sleep.png</string>
+    <string name="image_location_pitfall_trap">icons_items/Trap-Green.png</string>
+    <string name="image_location_shock_trap">icons_items/Trap-Purple.png</string>
+    <string name="image_location_flash_bomb">icons_items/Bomb-Yellow.png</string>
+    <string name="image_location_sonic_bomb">icons_items/Bomb-Grey.png</string>
+    <string name="image_location_dung_bomb">icons_items/Dung.png</string>
+    <string name="image_location_meat">icons_items/Meat-White.png</string>
+    <string name="image_location_effectiveness_1">icons_monster_info/effectiveness-1.png</string>
+    <string name="image_location_effectiveness_2">icons_monster_info/effectiveness-2.png</string>
+    <string name="image_location_effectiveness_3">icons_monster_info/effectiveness-3.png</string>
+
+    <string-array name="slot_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="filter_restriction">
+        <item>Minimum</item>
+        <item>Exactly</item>
+        <item>Maximum</item>
+    </string-array>
+
+    <string-array name="rank">
+        <item>Low</item>
+        <item>High</item>
+        <item>G</item>
+    </string-array>
 </resources>

@@ -1,6 +1,8 @@
 package com.daviancorp.android.ui.general;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -41,6 +43,7 @@ import com.daviancorp.android.ui.list.QuestListActivity;
 import com.daviancorp.android.ui.list.SkillTreeListActivity;
 import com.daviancorp.android.ui.list.WeaponSelectionListActivity;
 import com.daviancorp.android.ui.list.WishlistListActivity;
+import com.daviancorp.android.ui.list.WyporiumTradeListActivity;
 import com.daviancorp.android.ui.list.adapter.MenuSection;
 
 import java.io.IOException;
@@ -61,6 +64,9 @@ public abstract class GenericActionBarActivity extends ActionBarActivity {
     public ActionBarDrawerToggle mDrawerToggle;
     public DrawerLayout mDrawerLayout;
     private Handler mHandler;
+
+    // is this activity top of the hierarchy?
+    private boolean isTopLevel;
 
     // start drawer in the closed position unless otherwise specified
     private static boolean drawerOpened = false;
@@ -84,10 +90,19 @@ public abstract class GenericActionBarActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        isTopLevel = false;
+
         // Handler to implement drawer delay and runnable
         mHandler = new Handler();
     }
 
+    // Override and set to true when applicable
+    public void setAsTopLevel(){
+        isTopLevel = true;
+
+        // Enable drawer button instead of back button
+        enableDrawerIndicator();
+    }
 
     // Set up drawer toggle actions
     public void setupDrawer() {
@@ -176,6 +191,9 @@ public abstract class GenericActionBarActivity extends ActionBarActivity {
                 break;
             case 9: // Wishlists
                 intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
+                break;
+            case 10: // Wyporium Trade
+                intent = new Intent(GenericActionBarActivity.this, WyporiumTradeListActivity.class);
                 break;
         }
         final Intent finalIntent = intent;
@@ -290,11 +308,34 @@ public abstract class GenericActionBarActivity extends ActionBarActivity {
 
     public void onBackPressed() {
         // If back is pressed while drawer is open, close drawer.
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (!isTopLevel && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawers();
-        } else {
+        }
+        else if (isTopLevel && !mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+        // If this is a top level activity and drawer is closed, open drawer
+            mDrawerLayout.openDrawer(GravityCompat.START);
+        }
+        else if(isTopLevel && mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+        // If top level and drawer is open, prompt for exit
+            //Ask the user if they want to quit
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.confirm_exit)
+                    .setPositiveButton(R.string.exit, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //Stop the activity
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton(R.string.cancel_exit, null)
+                    .show();
+        }
+        else{
             super.onBackPressed();
         }
+
+
     }
 
     public Fragment getDetail() {
